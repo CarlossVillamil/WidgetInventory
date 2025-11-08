@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">WidgetInventory</string>
     <string name="inventory">Inventory</string>
+    <string name="inventario">Inventario</string>
+    <string name="price_format">$%s</string>
+    <string name="product_id">ID: %s</string>
 </resources>
