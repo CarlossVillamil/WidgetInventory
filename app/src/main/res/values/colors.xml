@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorBackgroundLogin">#1E282D</color>
     <color name="orange">#EE8D24</color>
+    <color name="background_home">#CC000000</color>
+    <color name="toolbar_gray">#424242</color>
 </resources>

@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import com.example.widgetinventory.MainActivity
 import com.example.widgetinventory.databinding.ActivityLoginBinding
+import com.example.widgetinventory.home.HomeActivity
 import androidx.core.content.edit
 
 class LoginActivity : AppCompatActivity() {
@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
         val isLoggedIn = prefs.getBoolean("isLoggedIn", false)
         if (isLoggedIn) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
             return
         }
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     val prefs = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
                     prefs.edit { putBoolean("isLoggedIn", true) }
 
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
                 }
 
