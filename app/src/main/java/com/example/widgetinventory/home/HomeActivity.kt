@@ -16,6 +16,7 @@ import com.example.widgetinventory.databinding.ActivityHomeBinding
 import com.example.widgetinventory.login.LoginActivity
 import com.example.widgetinventory.model.Product
 import com.example.widgetinventory.product.AddProductActivity
+import com.example.widgetinventory.product.DetailProductActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -101,7 +102,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onProductClick(product: Product) {
-        Toast.makeText(this, "Producto: ${product.name}", Toast.LENGTH_SHORT).show()
+        detailsProduct(product)
+    }
+
+    private fun detailsProduct(product: Product) {
+        val intent = Intent(this, DetailProductActivity::class.java).apply {
+            putExtra("product_id", product.id)
+            putExtra("product_name", product.name)
+            putExtra("product_price", product.price)
+        }
+        startActivity(intent)
     }
 
     private fun logout() {

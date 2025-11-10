@@ -77,4 +77,42 @@ class DatabaseHelper(context: Context) :
         db.close()
         return list
     }
+
+    fun getProductById(productCode: String): Product? {
+        val db = readableDatabase
+        var product: Product? = null
+
+        val cursor = db.query(
+            TABLE_PRODUCTS,
+            arrayOf(COLUMN_CODE, COLUMN_NAME, COLUMN_PRICE, COLUMN_QUANTITY),
+            "$COLUMN_CODE = ?",
+            arrayOf(productCode),
+            null, null, null
+        )
+
+        if (cursor.moveToFirst()) {
+            val code = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CODE))
+            val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME))
+            val price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE))
+            val quantity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY))
+
+            product = Product(code, name, price, quantity)
+        }
+
+        cursor.close()
+        db.close()
+        return product
+    }
+
+    fun deleteProduct(productCode: String): Int {
+        val db = writableDatabase
+        val result = db.delete(
+            TABLE_PRODUCTS,
+            "$COLUMN_CODE = ?",
+            arrayOf(productCode)
+        )
+        db.close()
+        return result
+    }
+
 }
